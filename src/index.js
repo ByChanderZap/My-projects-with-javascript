@@ -15,24 +15,14 @@ app.get('/', (req, res) => {
                 const data = await fetchData(url_api);
                 const repos = await fetchData(data.repos_url);
 
-                let reposWithJs = [];
-                repos.forEach(repo => {
-                    if (repo.language === 'JavaScript'){
-                        reposWithJs.push(repo);
-                    }
-                });
-
-                let finalInfo = [];
-                reposWithJs.forEach(repo => {
-                    let temportaly = [];
-                    temportaly.push(repo.id)
-                    temportaly.push(repo.name)
-                    temportaly.push(repo.owner.login)
-                    temportaly.push(repo.language)
-                    finalInfo.push(temportaly);
-                })
-
-                res.json(finalInfo);
+                const finalData = repos
+                    .filter(repo => repo.language === 'JavaScript')
+                    .map(repo => {
+                        const { id, name, owner: { login }, language } = repo
+                        return [id, name, login, language]
+                    })
+                res.json(finalData)
+                
             } catch (error) {
                 console.error(error);
             }
