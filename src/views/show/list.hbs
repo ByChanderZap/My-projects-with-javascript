@@ -1,0 +1,22 @@
+<div class="container p-4">
+    <p>HOLA</p>
+    <div class="row">
+        {{#each finalData}}
+        <div class="card" style="width: 18rem;">
+            <img src="../../public/images/javascript.svg.png" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ this.name }}</h5>
+                <p class="card-text">Ownder: {{ this.owner.login }}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Repository id: {{ this.id }}</li>
+                <li class="list-group-item"> description: {{ this.description }}</li>
+            </ul>
+            <div class="card-body">
+                <a href={{ this.html_url }} class="card-link">Repository Link</a>
+                <a href={{ this.ownder.html_url }} class="card-link">Profile</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

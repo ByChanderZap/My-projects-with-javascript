@@ -1,0 +1,8 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+
+::placeholder { 
+    color: indigo !important;
+    opacity: 1; /* Firefox */
+}

@@ -1,38 +1,32 @@
-const API = 'https://api.github.com/users/ByChanderZap'
 const express = require('express');
-const fetchData = require('./utils/fetchData.js');
+const exphbs = require('express-handlebars');
+const path = require('path');
 
 //  Initializations
-app = express();
+const app = express();
 
-//  Server Settings
-app.set('port', process.env.PORT || 4000);
+//  settings
+app.set('port', process.env.PORT || 4000)
+app.set('views', path.join(__dirname, 'views'))
+app.engine('.hbs', exphbs({
+    defaultLayout: 'main',
+    layoutsDir: path.join(app.get('views'), 'layouts'),
+    partialsDir: path.join(app.get('views'), 'partials'),
+    extname: '.hbs'
+}));
+app.set('view engine', '.hbs');
+
+//  middlewares
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
 
 //  routes
-app.get('/', (req, res) => {
-        const anotherFunction = async (url_api) => {
-            try {
-                const data = await fetchData(url_api);
-                const repos = await fetchData(data.repos_url);
+app.use(require('./routes/index.js'));
 
-                const finalData = repos
-                    .filter(repo => repo.language === 'JavaScript')
-                    .map(repo => {
-                        const { id, name, owner: { login }, language } = repo
-                        return [id, name, login, language]
-                    })
-                res.json(finalData)
-                
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        anotherFunction(API);
-})
+//  Public
+app.use(express.static(path.join(__dirname, 'public')))
 
-
-//  initializing server
+//  Starting server
 app.listen(app.get('port'), () => {
-    console.log('Server on port ', app.get('port'));
-    console.log('http://localhost:' + app.get('port'));
+    console.log('Server on port: ', app.get('port'));
 })
