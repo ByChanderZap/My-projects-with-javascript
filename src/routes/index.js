@@ -9,16 +9,13 @@ router.get('/', (req, res) => {
 })
 router.post('/', (req, res) => {
     const { githubProfile } = req.body;
-    console.log(githubProfile);
     let apiWithUser = `${API}${githubProfile}`
 
     const anotherFunction = async (url_api) => {
         try {
             const data = await fetchData(url_api);
             const repos = await fetchData(data.repos_url);
-
             const finalData = repos.filter(repo => repo.language === 'JavaScript')
-            console.log(finalData)
             res.render('show/list.hbs', { finalData })
             
         } catch (error) {
@@ -26,7 +23,6 @@ router.post('/', (req, res) => {
             res.render('show/error.hbs')
         }
     }
-
     anotherFunction(apiWithUser);
 
 })
