@@ -24,5 +24,13 @@
             </div>
         </div>
         {{/each}}
+        {{#unless finalData}}
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 text-center text-danger">Warning: No repositories or profile finded</h1>
+                <p class="lead text-center text-info">I did not find your profile or repository with javascript on it</p>
+            </div>
+        </div>
+        {{/unless}}
     </div>
 </div>
