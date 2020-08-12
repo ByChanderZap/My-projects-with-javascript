@@ -10,7 +10,31 @@ Use the package manager [npm](https://www.npmjs.com/) to install.
 npm install
 ```
 
-## Usage
+## PRE CONFIGURATION
+Im using mongoose on [mongodb atlas](https://cloud.mongodb.com/).
+
+Steps to configurate mongodb atlas and get your db and connection: 
+  - Create a project
+  - Create a cluster
+  - Create a new user
+  - Clic on 'conect' option on your clusters view
+  - Select 'connect your aplication'
+  - You will see something like: "mongodb+srv://alexander-db-user:<password>@cluster0.aewfe.mongodb.net/<dbname>?retryWrites=true&w=majority"
+  - replace <password> with the password for the db-user
+  - Replace <dbname> with the name of the database that connections will use by default
+  
+### Now on the root of the project create a file with the name: 'dbkeys.js' and export that: 
+
+```javascript
+const dbURL = 'YOUR_URL_SHOULD_BE_HERE'
+
+module.exports = {
+    dbURL: dbURL
+};
+```
+i recommend you hide this file on your .gitignore =D 
+
+## USE
 
 You have two options
 
