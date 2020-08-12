@@ -19,9 +19,9 @@ Steps to configurate mongodb atlas and get your db and connection:
   - Create a new user
   - Clic on 'conect' option on your clusters view
   - Select 'connect your aplication'
-  - You will see something like: "mongodb+srv://alexander-db-user:<password>@cluster0.aewfe.mongodb.net/<dbname>?retryWrites=true&w=majority"
-  - replace <password> with the password for the db-user
-  - Replace <dbname> with the name of the database that connections will use by default
+  - You will see something like: "mongodb+srv://alexander-db-user:PASSWORD@cluster0.aewfe.mongodb.net/DBNAME?retryWrites=true&w=majority"
+  - replace PASSWORD with the password for the db-user
+  - Replace DBNAME with the name of the database that connections will use by default
   
 ### Now on the root of the project create a file with the name: 'dbkeys.js' and export that: 
 
